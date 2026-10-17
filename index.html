@@ -298,7 +298,7 @@
             <div class="flex flex-wrap gap-2 mb-4">
                 <button onclick="filterLKPD('Semua')" class="px-4 py-1.5 bg-blue-700 hover:bg-blue-800 text-white rounded-lg text-sm font-bold shadow-sm border border-blue-600">Semua Mapel</button>
                 <button onclick="filterLKPD('LITERASI')" class="px-4 py-1.5 bg-slate-200 dark:bg-blue-900 hover:bg-slate-300 dark:hover:bg-blue-800 text-slate-900 dark:text-white rounded-lg text-sm font-bold border border-slate-300 dark:border-blue-700">LITERASI</button>
-                <button onclick="filterLKPD('Prakarya')" class="px-4 py-1.5 bg-slate-200 dark:bg-blue-900 hover:bg-slate-300 dark:hover:bg-blue-800 text-slate-900 dark:text-white rounded-lg text-sm font-bold border border-slate-300 dark:border-blue-700">Prakarya</button>
+                <button onclick="filterLKPD('NUMERASI')" class="px-4 py-1.5 bg-slate-200 dark:bg-blue-900 hover:bg-slate-300 dark:hover:bg-blue-800 text-slate-900 dark:text-white rounded-lg text-sm font-bold border border-slate-300 dark:border-blue-700">NUMERASI</button>
             </div>
             <div id="lkpd-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </section>
@@ -558,7 +558,7 @@
             if (detectedMapel === 'Umum') {
                 let lower = activityName.toLowerCase();
                 if (lower.includes('LITERASI')) detectedMapel = 'LITERASI';
-                else if (lower.includes('prakarya')) detectedMapel = 'Prakarya';
+                else if (lower.includes('NUMERASI')) detectedMapel = 'NUMERASI';
             }
 
             logs.unshift({
@@ -708,7 +708,7 @@
             if (!Array.isArray(logs)) logs = Object.values(logs);
             let scores = JSON.parse(localStorage.getItem('smp_student_scores') || '[]');
 
-            let mapelSet = new Set(['LITERASI', 'Prakarya']);
+            let mapelSet = new Set(['LITERASI', 'NUMERASI']);
             logs.forEach(l => { if (l.mapel && l.mapel !== 'Umum') mapelSet.add(l.mapel); });
             scores.forEach(s => { if (s.mapel) mapelSet.add(s.mapel); });
 
@@ -1006,7 +1006,7 @@
                 if (result.status === 'success' && result.data.length > 1) {
                     cachedExamRows = result.data;
                     
-                    const listMapel = ['LITERASI', 'Prakarya'];
+                    const listMapel = ['LITERASI', 'NUMERASI'];
                     let availableMapelHtml = '';
 
                     listMapel.forEach(mapel => {
